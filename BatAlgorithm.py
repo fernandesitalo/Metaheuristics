@@ -1,121 +1,143 @@
+# run the algorithm in python 3!
+# author: Ítalo Fernandes Gonçalves, italofernandes.fg@gmail.com
+# the last update in: 04/02/2020 
+# for install the pip3: sudo apt install python3-pip
+# for install the package numpy: pip3 install numpy
+
 from random import random,randint
 from math import pi,cos,exp
 import numpy as np
 np.random.seed(100)
 
-class bat_algorithm():
-  def __init__(self, D, tpop, niter, r0, Alfa, Lambda ,fmin, fmax, limInf_, limSup_, function):
-    self.D = D          	# dimensao - quanidade de variaveis da equacao
-    self.tpop = tpop        # tamanho da populacao
-    self.niter = niter      # numero de iteracoes / geracoes
-    self.Alfa = Alfa      	# parametro 1 - decaimento da amplitude ao encontrar uma amplitude menor
-    self.Lambda = Lambda    # parametro 2
-    self.fmin = fmin        # frequency min
-    self.fmax = fmax        # frequency max
-    self.li = limInf_       # limite inferior de busca
-    self.ls = limSup_       # limite superior de busca
-    self.Fun = function     # funcao para analise
-    self.r0 = r0       		# r inicial
-
-	######### - convenções 
-    self.A = [0.95 for i in range(self.tpop)]     # amplitude - mesmo valor para todos morcegos
-    self.r = [self.r0 for i in range(self.tpop)]  # taxa de emissao de pulso - mesmo valor para todos morcegos
-	######### -
-	
-    self.limInf = [0 for i in range(self.D)]    # limite inferior para cada variavel  --- estabelecer limites diferentes para cada variavel? - talvez
-    self.limSup = [0 for i in range(self.D)]    # limite superior para cada variavel
-
-    self.f = [0.0] * self.tpop	# frequencia
-
-    self.v = [[0.0 for i in range(self.D)] for j in range(self.tpop)] 	 # velocidade
-
-    self.Sol = [[0.0 for i in range(self.D)] for j in range(self.tpop)]  # valores das variaveis dos morcegos existentes
-
-    self.Fitness = [0.0] * self.tpop    # fitness
-    self.melhor = [0] * self.D     		# configuracao da melhor solucao
-    self.melhorFitness = 0.0         		# valor da melhor solucao
-
-    self.Amedia = None					# media das amplitudes
-
-  def melhorMorcego(self):# define melhor morcego 
-    j = 0
-    for i in range(self.tpop):
-      if self.Fitness[i] < self.Fitness[j]:
-        j = i
-    for i in range(self.D):
-      self.melhor[i] = self.Sol[j][i]
-    self.melhorFitness = self.Fitness[j]
-
-  def inicializacao(self):
-    for i in range(self.D): # mesmos limites para cada variavel
-      self.limInf[i] = self.li
-      self.limSup[i] = self.ls
-      
-    for i in range(self.tpop):
-      self.f[i] = 0
-      for j in range(self.D):
-        self.v[i][j] = 0.0	# velocidade inicial igual a zero para todos morcegos
-        self.Sol[i][j] = self.limInf[j] + (self.limSup[j] - self.limInf[j]) * np.random.uniform(0,1) # atribui uma "frequencia aleatoria"
-      self.Fitness[i] = self.Fun(self.D, self.Sol[i])
-    self.melhorMorcego()
-
-
-  def ajeitaLimites(self, val, d): # NORMALIZA O VALOR DE ACORDO COM OS PARAMENTROS PASSADOS (LIMITES DE BUSCA)
-    if val < self.limInf[d]:
-      val = self.limInf[d]
-    if val > self.limSup[d]:
-      val = self.limSup[d]
-    return val
-
-  def executa(self):
-    # SOLUCOES ATUAIS
-    S = [[0.0 for i in range(self.D)] for j in range(self.tpop)]
-    self.inicializacao()
+class BatAlgorithm():
+  def __init__(self, nDimensions, populationSize, nIterations, pulseEmissionRateInitial, Alfa, Lambda ,lowerFrequency, upperFrequency, lowerLimit, upperLimit, targetFunction):
+    self.nDimensions = nDimensions
+    self.populationSize = populationSize
+    self.nIterations = nIterations
+    self.Alfa = Alfa
+    self.Lambda = Lambda
+    self.lowerFrequency = lowerFrequency
+    self.upperFrequency = upperFrequency
+    self.lowerLimitValue = lowerLimit 
+    self.upperLimitValue = upperLimit        
+    self.targetFunction = targetFunction       
+    self.pulseEmissionRateInitial = pulseEmissionRateInitial
+		# convenções 
+    self.amplitude = [0.95 for i in range(self.populationSize)]
+    self.pulseEmissionRate = [pulseEmissionRateInitial for i in range(self.populationSize)]
+		
+		# can be different limits for each dimension... change the code for this after
+    self.lowerLimit = [0 for dimension in range(self.nDimensions)]
+    self.upperLimit = [0 for dimension in range(self.nDimensions)]
     
-    # CRITERIO DE PARADA
-    for t in range(self.niter):
-      self.Amedia = np.mean(self.A) # obtem media do vetor A
+		# the population of bats
+    self.frequency = [0.0] * self.populationSize
+    self.velocity = [[0.0 for dimension in range(self.nDimensions)] for j in range(self.populationSize)]
+    self.bats = [[0.0 for dimension in range(self.nDimensions)] for bat in range(self.populationSize)]
+    self.fitness = [0.0] * self.populationSize
+    self.bestBat = [0] * self.nDimensions
+    self.bestFitness = 0.0
+    self.aAverage = None
 
-      # PARA CADA MORCEGO
-      for i in range(self.tpop):
-        self.f[i] = self.fmin + (self.fmax - self.fmin) * np.random.uniform(0,1)    	# EQUACAO (1)
-        for j in range(self.D): # para cada variavel dependente da funcao
-          self.v[i][j] = self.v[i][j] + (self.Sol[i][j] - self.melhor[j]) * self.f[i] 	# EQUACAO (2)
-          S[i][j] = self.Sol[i][j] + self.v[i][j]                   					# EQUACAO (3)
-          S[i][j] = self.ajeitaLimites(S[i][j],j)
+  def updateBestBat(self):# define bestBat morcego 
+    indexBestBat = 0
+    for bat in range(self.populationSize):
+      if self.fitness[bat] < self.fitness[indexBestBat]:
+        indexBestBat = bat
+    for dimension in range(self.nDimensions):
+      self.bestBat[dimension] = self.bats[indexBestBat][dimension]
+    self.bestFitness = self.fitness[indexBestBat]
 
-        # REALIZA BUSCA LOCAL
-        if np.random.uniform(0,1) > self.r[i]:
-          for j in range(self.D):
-            S[i][j] = self.melhor[j] + np.random.uniform(-1.0,1.0) * self.Amedia # MUDEI
-            S[i][j] = self.ajeitaLimites(S[i][j],j)
-
-        # OBTEM O FITNESS DO MORCEGO NESTA ATUAL POSICAO
-        temp_fitness = self.Fun(self.D, S[i])
-
-        # ATUALIZAR OU NAO O MORCEGO ATUAL - estou procurando o minmimo, por isso pegar o menor fitness
-        if (temp_fitness < self.Fitness[i]) and (np.random.uniform(0,1) < self.A[i]):
-          for j in range(self.D):
-            self.Sol[i][j] = S[i][j]
-          self.Fitness[i] = temp_fitness						# atualizacao do fitness
-          self.r[i] = self.r0 * ( 1 - exp(-self.Lambda * t) )	# atualizacao da taxa de emissão de pulso
-          self.A[i] = self.A[i] * self.Alfa						# atualizacao da amplitude
-
-        # ATUALIZAR O MELHOR MORCEGO GLOBAL
-        if self.Fitness[i] < self.melhorFitness:
-          for j in range(self.D):
-            self.melhor[j] = S[i][j]
-          self.melhorFitness = self.Fitness[i]
+  def init(self):
+    for dimension in range(self.nDimensions): # same limits for each variable
+      self.lowerLimit[dimension] = self.lowerLimitValue
+      self.upperLimit[dimension] = self.upperLimitValue
+    for bat in range(self.populationSize):
+      self.frequency[bat] = 0
+      for dimension in range(self.nDimensions):
+        self.velocity[bat][dimension] = 0.0 # velocity equal zero for all bats
+        self.bats[bat][dimension] = self.lowerLimit[dimension] + (self.upperLimit[dimension] - self.lowerLimit[dimension]) * np.random.uniform(0,1) # atribui uma "frequencia aleatoria"
+      self.fitness[bat] = self.targetFunction(self.nDimensions, self.bats[bat])
+    self.updateBestBat()
 
 
+  def adjustLimits(self, value, dimension):
+    if value < self.lowerLimit[dimension]:
+      value = self.lowerLimit[dimension]
+    if value > self.upperLimit[dimension]:
+      value = self.upperLimit[dimension]
+    return value
 
-def funcaoTeste(d,x):
+  def runBatAlgorithm(self):
+    # 'S' is the current solution 
+    S = [[0.0 for dimension in range(self.nDimensions)] for bat in range(self.populationSize)]
+    self.init()
+    for iteration in range(self.nIterations):
+			# get the average of the array amplitude
+      self.aAverage = np.mean(self.amplitude) 
+
+      for bat in range(self.populationSize):
+        self.frequency[bat] = self.lowerFrequency + (self.upperFrequency - self.lowerFrequency) * np.random.uniform(0,1)              							  	# EQ (1)
+        for dimension in range(self.nDimensions):
+          self.velocity[bat][dimension] = self.velocity[bat][dimension] + (self.bats[bat][dimension] - self.bestBat[dimension]) * self.frequency[bat] 	# EQ (2)
+          S[bat][dimension] = self.bats[bat][dimension] + self.velocity[bat][dimension]                                                 	  						# EQ (3)
+          S[bat][dimension] = self.adjustLimits(S[bat][dimension],dimension)
+
+        # local search
+        if np.random.uniform(0,1) > self.pulseEmissionRate[bat]:
+          for dimension in range(self.nDimensions):
+            S[bat][dimension] = self.bestBat[dimension] + np.random.uniform(-1.0,1.0) * self.aAverage
+            S[bat][dimension] = self.adjustLimits(S[bat][dimension],dimension)
+
+        # get the fitness of the bat in this position
+        possibleFitness = self.targetFunction(self.nDimensions, S[bat])
+
+        # update or not the bat
+        if (possibleFitness < self.fitness[bat]) and (np.random.uniform(0,1) < self.amplitude[bat]):
+          for dimension in range(self.nDimensions):
+            self.bats[bat][dimension] = S[bat][dimension]
+          # update the fitness
+          self.fitness[bat] = possibleFitness  
+          # update the pulse emission rate         				
+          self.pulseEmissionRate[bat] = self.pulseEmissionRateInitial * ( 1 - exp(-self.Lambda * iteration) )
+          # update the amplitude
+          self.amplitude[bat] = self.amplitude[bat] * self.Alfa	
+				
+				# update the with a best bat ....
+        if self.fitness[bat] < self.bestFitness:
+          for dimension in range(self.nDimensions):
+            self.bestBat[dimension] = S[bat][dimension]
+          self.bestFitness = self.fitness[bat]
+
+def functionTest(nDimensions,x):
   return -cos(x[0])*cos(x[1])*exp(-(x[0]-pi)**2 -(x[1]-pi)**2)
 
 if __name__ == '__main__':
+  nDimensions = 2
+  populationSize = 1000
+  nIterations = 200
+  pulseEmissionRateInitial = 0.3
+  Alfa = 0.9999
+  Lambda = 0.001
+  lowerFrequency = 0
+  upperFrequency = 10000
+  lowerLimit = -100
+  upperLimit = +100
+  targetFunction = functionTest
   
   while (True) :
-			#(D, tpop, niter, r0, Alfa, Lambda ,fmin, fmax, limInf_, limSup_, function):
-    aux = bat_algorithm(2,1000,200, 0.3, 0.9999,0.001  , 0,10000 ,-100,100,funcaoTeste)
-    aux.executa()
-    print (aux.melhorFitness,aux.melhor)
+    batAlgorithm = BatAlgorithm( nDimensions,
+												populationSize,
+												nIterations,
+												pulseEmissionRateInitial,
+												Alfa,
+												Lambda,
+												lowerFrequency,
+												upperFrequency,
+												lowerLimit,
+													upperLimit,
+												targetFunction)
+    batAlgorithm.runBatAlgorithm()
+    
+    print (batAlgorithm.bestFitness,batAlgorithm.bestBat)
+
