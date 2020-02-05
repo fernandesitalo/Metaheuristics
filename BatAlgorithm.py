@@ -22,15 +22,15 @@ class BatAlgorithm():
     self.upperLimitValue = upperLimit        
     self.targetFunction = targetFunction       
     self.pulseEmissionRateInitial = pulseEmissionRateInitial
-		# convenções 
+    # convenções 
     self.amplitude = [0.95 for i in range(self.populationSize)]
     self.pulseEmissionRate = [pulseEmissionRateInitial for i in range(self.populationSize)]
-		
-		# can be different limits for each dimension... change the code for this after
+    
+    # can be different limits for each dimension... change the code for this after
     self.lowerLimit = [0 for dimension in range(self.nDimensions)]
     self.upperLimit = [0 for dimension in range(self.nDimensions)]
     
-		# the population of bats
+    # the population of bats
     self.frequency = [0.0] * self.populationSize
     self.velocity = [[0.0 for dimension in range(self.nDimensions)] for j in range(self.populationSize)]
     self.bats = [[0.0 for dimension in range(self.nDimensions)] for bat in range(self.populationSize)]
@@ -73,14 +73,14 @@ class BatAlgorithm():
     S = [[0.0 for dimension in range(self.nDimensions)] for bat in range(self.populationSize)]
     self.init()
     for iteration in range(self.nIterations):
-			# get the average of the array amplitude
+      # get the average of the array amplitude
       self.aAverage = np.mean(self.amplitude) 
 
       for bat in range(self.populationSize):
-        self.frequency[bat] = self.lowerFrequency + (self.upperFrequency - self.lowerFrequency) * np.random.uniform(0,1)              							  	# EQ (1)
+        self.frequency[bat] = self.lowerFrequency + (self.upperFrequency - self.lowerFrequency) * np.random.uniform(0,1)                                # EQ (1)
         for dimension in range(self.nDimensions):
-          self.velocity[bat][dimension] = self.velocity[bat][dimension] + (self.bats[bat][dimension] - self.bestBat[dimension]) * self.frequency[bat] 	# EQ (2)
-          S[bat][dimension] = self.bats[bat][dimension] + self.velocity[bat][dimension]                                                 	  						# EQ (3)
+          self.velocity[bat][dimension] = self.velocity[bat][dimension] + (self.bats[bat][dimension] - self.bestBat[dimension]) * self.frequency[bat]   # EQ (2)
+          S[bat][dimension] = self.bats[bat][dimension] + self.velocity[bat][dimension]                                                                 # EQ (3)
           S[bat][dimension] = self.adjustLimits(S[bat][dimension],dimension)
 
         # local search
@@ -98,12 +98,12 @@ class BatAlgorithm():
             self.bats[bat][dimension] = S[bat][dimension]
           # update the fitness
           self.fitness[bat] = possibleFitness  
-          # update the pulse emission rate         				
+          # update the pulse emission rate                
           self.pulseEmissionRate[bat] = self.pulseEmissionRateInitial * ( 1 - exp(-self.Lambda * iteration) )
           # update the amplitude
-          self.amplitude[bat] = self.amplitude[bat] * self.Alfa	
-				
-				# update the with a best bat ....
+          self.amplitude[bat] = self.amplitude[bat] * self.Alfa 
+        
+        # update the with a best bat ....
         if self.fitness[bat] < self.bestFitness:
           for dimension in range(self.nDimensions):
             self.bestBat[dimension] = S[bat][dimension]
@@ -127,16 +127,16 @@ if __name__ == '__main__':
   
   while (True) :
     batAlgorithm = BatAlgorithm( nDimensions,
-												populationSize,
-												nIterations,
-												pulseEmissionRateInitial,
-												Alfa,
-												Lambda,
-												lowerFrequency,
-												upperFrequency,
-												lowerLimit,
-													upperLimit,
-												targetFunction)
+                        populationSize,
+                        nIterations,
+                        pulseEmissionRateInitial,
+                        Alfa,
+                        Lambda,
+                        lowerFrequency,
+                        upperFrequency,
+                        lowerLimit,
+                          upperLimit,
+                        targetFunction)
     batAlgorithm.runBatAlgorithm()
     
     print (batAlgorithm.bestFitness,batAlgorithm.bestBat)
