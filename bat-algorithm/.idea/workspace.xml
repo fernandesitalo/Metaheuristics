@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e4ec9bfd-da71-47e9-9cea-f43da58102cf" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1XMW1QrbqF0BSNBJx62vjBoWmh6" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunManager" selected="Python.main">
+    <configuration name="Bat" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="batAlgorithm" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/main" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main/Bat.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="batAlgorithm" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../bat-algorithm/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../bat-algorithm/src/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="principal" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="batAlgorithm" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/main" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main/principal.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.principal" />
+        <item itemvalue="Python.Bat" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e4ec9bfd-da71-47e9-9cea-f43da58102cf" name="Default Changelist" comment="" />
+      <created>1580856229130</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1580856229130</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="394" y="27" width="619" height="741" key="#Microbat" timestamp="1580856405982">
+      <screen x="52" y="27" width="1314" height="741" />
+    </state>
+    <state x="394" y="27" width="619" height="741" key="#Microbat/52.27.1314.741@52.27.1314.741" timestamp="1580856405982" />
+    <state x="422" y="202" width="564" height="397" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1581378303864">
+      <screen x="52" y="27" width="1314" height="741" />
+    </state>
+    <state x="422" y="202" width="564" height="397" key="#com.intellij.fileTypes.FileTypeChooser/52.27.1314.741@52.27.1314.741" timestamp="1581378303864" />
+    <state x="52" y="27" width="580" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1581378130820">
+      <screen x="52" y="27" width="1314" height="741" />
+    </state>
+    <state x="52" y="27" width="580" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/52.27.1314.741@52.27.1314.741" timestamp="1581378130820" />
+    <state x="558" y="47" width="424" height="491" key="FileChooserDialogImpl" timestamp="1581377765360">
+      <screen x="52" y="27" width="1314" height="741" />
+    </state>
+    <state x="558" y="47" width="424" height="491" key="FileChooserDialogImpl/52.27.1314.741@52.27.1314.741" timestamp="1581377765360" />
+    <state width="1268" height="172" key="GridCell.Tab.0.bottom" timestamp="1581390996267">
+      <screen x="52" y="27" width="1314" height="741" />
+    </state>
+    <state width="1268" height="172" key="GridCell.Tab.0.bottom/52.27.1314.741@52.27.1314.741" timestamp="1581390996267" />
+    <state width="1268" height="172" key="GridCell.Tab.0.center" timestamp="1581390996267">
+      <screen x="52" y="27" width="1314" height="741" />
+    </state>
+    <state width="1268" height="172" key="GridCell.Tab.0.center/52.27.1314.741@52.27.1314.741" timestamp="1581390996267" />
+    <state width="1268" height="172" key="GridCell.Tab.0.left" timestamp="1581390996267">
+      <screen x="52" y="27" width="1314" height="741" />
+    </state>
+    <state width="1268" height="172" key="GridCell.Tab.0.left/52.27.1314.741@52.27.1314.741" timestamp="1581390996267" />
+    <state width="1268" height="172" key="GridCell.Tab.0.right" timestamp="1581390996267">
+      <screen x="52" y="27" width="1314" height="741" />
+    </state>
+    <state width="1268" height="172" key="GridCell.Tab.0.right/52.27.1314.741@52.27.1314.741" timestamp="1581390996267" />
+    <state x="155" y="27" width="1022" height="737" key="SettingsEditor" timestamp="1581377967882">
+      <screen x="52" y="27" width="1314" height="741" />
+    </state>
+    <state x="155" y="27" width="1022" height="737" key="SettingsEditor/52.27.1314.741@52.27.1314.741" timestamp="1581377967882" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1581387434362">
+      <screen x="52" y="27" width="1314" height="741" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/52.27.1314.741@52.27.1314.741" timestamp="1581387434362" />
+    <state x="365" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1581377407166">
+      <screen x="52" y="27" width="1314" height="741" />
+    </state>
+    <state x="365" y="225" key="com.intellij.ide.util.TipDialog/52.27.1314.741@52.27.1314.741" timestamp="1581377407166" />
+  </component>
+</project>
