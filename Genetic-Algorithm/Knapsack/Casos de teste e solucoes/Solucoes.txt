@@ -1,0 +1,1 @@
+case1: sol is 5741

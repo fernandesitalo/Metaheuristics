@@ -18,7 +18,7 @@ def analise(vetor):
 if __name__ == '__main__':
 
     populationSize = 50
-    nIterations = 10000
+    nIterations = 100
     amplitudeInitial = 0.95
     pulseEmissionRateInitial = 0.3
     alfaP = 0.9999
