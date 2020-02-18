@@ -1,7 +1,8 @@
 import copy
 from math import exp
 import numpy as np
-from src.Bat import Bat, dist2, sumBatLocation, sumBatLocationScalar
+from src.Bat import Bat, dist2, sumBatLocation, sumBatLocationScalar, differenceBatLocation, \
+    multiplicationLocationScalar
 
 
 def adjustLimits(value, dimension, limits):
@@ -26,7 +27,7 @@ def RunBatAlgorithmHybrid(function, limits, populationSize, nIterations, amplitu
     velocityInitial = [0 for _ in range(nDimensions)]
     frequencyInitial = 0
 
-    sizeBests = min((populationSize//10),1)
+    sizeBests = min((populationSize//10),5)
     bestKBats = []
 
     alfaH = 0.5
@@ -61,10 +62,13 @@ def RunBatAlgorithmHybrid(function, limits, populationSize, nIterations, amplitu
             else:
                 betaH = 0.2
                 gamaH = 1.0
+                alfaH =  (1 - (1 - (0.0001/9)**(1/(t+1)))) * alfaH;
                 k = np.random.randint(0,populationSize)
-                partOne = betaH * exp(-gamaH * dist2(newBatLocation,bats[k].location))
+                partOne = multiplicationLocationScalar( differenceBatLocation(bats[k].location, bat.location), betaH * exp(-gamaH * dist2(newBatLocation,bats[k].location) * betaH))
                 partTwo = alfaH * (np.random.uniform(0,1) - 0.5)
-                newBatLocation = sumBatLocationScalar(sumBatLocationScalar(bat.location, partOne) , partTwo)
+                newBatLocation = sumBatLocationScalar(sumBatLocation(bat.location, partOne) , partTwo)
+                for dimension in range(nDimensions):
+                    newBatLocation[dimension] = adjustLimits(newBatLocation[dimension],dimension,limits)
 
             possibleFitness = function(newBatLocation)
 

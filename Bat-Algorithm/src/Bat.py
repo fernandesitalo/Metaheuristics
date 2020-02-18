@@ -7,11 +7,16 @@ def dist2(a,b):
 	return d
 
 def sumBatLocation(c,d):
-	print(type(c), " ++++++ " , type(d) )
 	return [(c[i]+d[i]) for i in range(len(c))]
 
 def sumBatLocationScalar(a,b):
-	return [(a[i]+b) for i in range(len(a))]
+	return [a[i]+b for i in range(len(a))]
+
+def multiplicationLocationScalar(a,b):
+	return [a[i]*b for i in range(len(a))]
+
+def differenceBatLocation(c,d):
+	return [c[i]-d[i] for i in range(len(c))]
 
 class Bat():
 	def __init__(self, amplitude, pulseEmissionRate, frequency, velocity, location,fitness):
