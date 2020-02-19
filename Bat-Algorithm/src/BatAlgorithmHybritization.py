@@ -27,7 +27,7 @@ def RunBatAlgorithmHybrid(function, limits, populationSize, nIterations, amplitu
     velocityInitial = [0 for _ in range(nDimensions)]
     frequencyInitial = 0
 
-    sizeBests = min((populationSize//10),5)
+    sizeBests = min((populationSize//10),1)
     bestKBats = []
 
     alfaH = 0.5
@@ -41,6 +41,8 @@ def RunBatAlgorithmHybrid(function, limits, populationSize, nIterations, amplitu
         updateKBest(sizeBests,bats[-1],bestKBats)
 
     bestBat = copy.deepcopy(min(bats))
+
+    bestsBatsForPlot = []
 
     for t in range(nIterations):
         aAverage = np.mean([bat.amplitude for bat in bats])
@@ -84,4 +86,6 @@ def RunBatAlgorithmHybrid(function, limits, populationSize, nIterations, amplitu
             if bat.fitness < bestBat.fitness:
                 bestBat = copy.deepcopy(bat)
 
-    return (bestBat.fitness, bestBat.location)
+        bestsBatsForPlot.append(bestBat.fitness)
+
+    return (bestBat.fitness, bestBat.location,bestsBatsForPlot)

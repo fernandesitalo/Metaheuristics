@@ -26,8 +26,10 @@ def RunBatAlgorithm(function, limits, populationSize, nIterations, amplitudeInit
     velocityInitial = [0 for _ in range(nDimensions)]
     frequencyInitial = 0
 
-    k = min((populationSize//10),5)
+    k = min((populationSize//10),1)
     bestKBats = []
+
+    bestsBatsForPlot = []
 
     # initialize the population of form random
     for i in range(populationSize):
@@ -71,4 +73,7 @@ def RunBatAlgorithm(function, limits, populationSize, nIterations, amplitudeInit
             if bat.fitness < bestBat.fitness:
                 bestBat = copy.deepcopy(bat)
 
-    return (bestBat.fitness, bestBat.location)
+        # storange the value of the best bat for future plot in main
+        bestsBatsForPlot.append(bestBat.fitness)
+
+    return (bestBat.fitness, bestBat.location,bestsBatsForPlot)
