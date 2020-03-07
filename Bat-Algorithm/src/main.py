@@ -53,13 +53,13 @@ if __name__ == '__main__':
     arq = open('novo-arquivo.txt', 'w')
 
     # se execultar mais de uma vez, vai plotar o grafico de convergencia somente da ultima execução...
-    qtdExe = 30
+    qtdExe = 20
 
-    populationSize = 30
+    populationSize = 50
     nIterations = 1000
     amplitudeInitial = 0.95
     pulseEmissionRateInitial = 0.3
-    alfaP = 0.9999
+    alfaP = 0.9
     lambdaP = 0.001
     lowerFrequency = 0
     upperFrequency = 100
