@@ -48,6 +48,7 @@ def showGraphics():
     plt.show()
 
 
+
 if __name__ == '__main__':
 
     arq = open('novo-arquivo.txt', 'w')
