@@ -1,4 +1,0 @@
-
-
-class Vehicle:
-    capacity = None
