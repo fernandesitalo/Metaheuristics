@@ -72,13 +72,16 @@ lf media(vector<Vetor> populacao, const function<lf(Vetor)> &funcao){
 	return sum;
 }
 
+lf ajustaFp(lf Fp){ 
+	if(Fp > 1) return 1;
+	if(Fp < 0) return 0;
+	return Fp;
+}
 
-lf ajusta(lf a){
-	if(0 > a)
-		return 0;
-	if(a > 1)
-		return 1;
-	return a;
+lf ajustaPc(lf Pc){
+	if(Pc > 1) return 1;
+	if(Pc < 0) return 0;
+	return Pc;
 }
 
 
@@ -94,7 +97,7 @@ Vetor ed(const function<lf(Vetor)> &funcao, const vector<pair<lf,lf>>& limites,
   lf mediaAnterior = media(populacao,funcao);
   
   lf delta = 0.5;	// variação inicial
-  lf alfa = 0.99876; // alfa de decaimento
+  lf alfa = 0.9; // alfa de decaimento
   
   for(int iteracoes = 0; iteracoes < maxIteracoes; ++iteracoes){
     iteracao(Np,Pc,Fp,limites,populacao,cruzamento,funcao);  
@@ -102,16 +105,16 @@ Vetor ed(const function<lf(Vetor)> &funcao, const vector<pair<lf,lf>>& limites,
 		lf mediaAtual = media(populacao,funcao);
 		
     if(mediaAtual > mediaAnterior){ // criterio de atualização dos parametros
-			lf var[] = { delta,-delta,0,rand_()};
+			lf var[] = { delta,-delta,0,rand_(),-rand_()};
 			lf melhorConf = 0;
 			vector<lf> conf = {Fp,Pc};
 			vector<Vetor> melhorPop;
 			
-			for(int i = 0 ; i < 4 ; ++i){
-					for( int j = 0 ; j < 4 ; ++j){
+			for(int i = 0 ; i < 5 ; ++i){
+					for( int j = 0 ; j < 5 ; ++j){
 						
-						lf newFp = ajusta(Fp + var[i]);
-						lf newPc = ajusta(Pc + var[j]);
+						lf newFp = ajustaFp(Fp + var[i]);
+						lf newPc = ajustaPc(Pc + var[j]);
 						
 						vector<Vetor> pop = populacao;
 						
@@ -125,6 +128,7 @@ Vetor ed(const function<lf(Vetor)> &funcao, const vector<pair<lf,lf>>& limites,
 							conf[0] = newFp;
 							conf[1] = newPc;
 							melhorPop = pop;
+							melhorConf = mediaPop;
 						}
 					}
 			}		
@@ -134,6 +138,7 @@ Vetor ed(const function<lf(Vetor)> &funcao, const vector<pair<lf,lf>>& limites,
 			Fp = conf[0];
 			Pc = conf[1];
 		}
+		mediaAnterior = mediaAtual;
   }
 
   auto melhor = populacao[0];
@@ -202,18 +207,18 @@ void run(const function<lf(Vetor)> &funcao, lf limInf, lf limSup){
 	vector<lf> v;
 	lf best = 1e50;
 	for(int t = 0 ; t < 1000 ; ++t){
-		Vetor ans = ed(funcao, {{limInf,limSup}, {limInf,limSup}});
+		Vetor ans = ed(funcao, {{limInf,limSup}, {limInf,limSup},{limInf,limSup}, {limInf,limSup}, {limInf,limSup}});
 		v.push_back(funcao(ans));
 		if(best > funcao(ans)){
 				best = funcao(ans);
 		}
 	}
-	cout << best << "  &  " << media(v) << "  &  " << DP(v) << "  \\\\" << '\n';
+	cout << best << "\t&\t" << media(v) << "\t&\t" << DP(v) << "\t\\\\" << '\n';
 }
 
 int main(){
 
-cout << setiosflags(ios::scientific);
+	cout << setiosflags(ios::scientific);
 	run(Rastrigin,-5.12,5.12);
 	run(Rosenbrock,-2.048,2.048);
 	run(Easom,-100,100);
