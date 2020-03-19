@@ -31,8 +31,7 @@ class SimulatedAnnealing(object):
     def local_search(self,tour):
         raffle = lambda : randint(1, self.cvrp.number_of_clients - 1)
         new_tour = tour[::]
-        client1 = raffle()
-        client2 = raffle()
+        client1, client2 = raffle(), raffle()
         while client1 == client2:
             client2 = raffle()
         new_tour[client1],new_tour[client2] = new_tour[client2], new_tour[client1]
