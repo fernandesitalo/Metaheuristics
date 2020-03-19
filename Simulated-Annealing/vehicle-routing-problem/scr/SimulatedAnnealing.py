@@ -50,14 +50,8 @@ class SimulatedAnnealing(object):
                 solucao_vizinha = self.local_search(solucao_vizinha)
                 fitness_vizinha = optimal_split(self.cvrp, solucao_vizinha)
 
-                if self.fitness_atual > fitness_vizinha:
-                    self.solucao_atual = solucao_vizinha
-                    self.fitness_atual = fitness_vizinha
+                if self.fitness_atual > fitness_vizinha or exp(-(fitness_vizinha - self.fitness_atual)/self.currentTemperature) > uniform(0, 1):
+                    self.solucao_atual, self.fitness_atual = solucao_vizinha, fitness_vizinha
                     if self.melhor_fitness > self.fitness_atual:
-                        self.melhor_fitness = self.fitness_atual
-                        self.melhor_solucao = self.solucao_atual
-                else:
-                    if exp(-(fitness_vizinha - self.fitness_atual) / self.currentTemperature) > uniform(0, 1):
-                        self.solucao_atual = solucao_vizinha
-                        self.fitness_atual = fitness_vizinha
+                        self.melhor_fitness,self.melhor_solucao = self.fitness_atual,self.solucao_atual
             self.initialTemperature *= self.alfa
