@@ -2,8 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="02eaa2e2-5b82-4a7c-a561-4d33a2b720d3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/scr/Crvp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/SplitPermutation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/min_queue.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Parameter-Control/MyControl/myControl_DE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/SA_VRP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SA_VRP.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scr/Vehicle.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/A-n32-k5.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/A-n32-k5.sol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/A-n32-k5.vrp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scr/A-n32-k5.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scr/CalculateCostOfPermutation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scr/SimulatedAnnealing.py" beforeDir="false" afterPath="$PROJECT_DIR$/scr/SimulatedAnnealing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scr/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/scr/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scr/readArchive.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,25 +80,33 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1293" height="174" key="GridCell.Tab.0.bottom" timestamp="1583622023746">
+    <state x="770" y="148" width="524" height="505" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584654782910">
       <screen x="52" y="27" width="1314" height="741" />
     </state>
-    <state width="1293" height="174" key="GridCell.Tab.0.bottom/52.27.1314.741@52.27.1314.741" timestamp="1583622023746" />
-    <state width="1293" height="174" key="GridCell.Tab.0.center" timestamp="1583622023745">
+    <state x="770" y="148" width="524" height="505" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/52.27.1314.741@52.27.1314.741" timestamp="1584654782910" />
+    <state width="1293" height="174" key="GridCell.Tab.0.bottom" timestamp="1584660496488">
       <screen x="52" y="27" width="1314" height="741" />
     </state>
-    <state width="1293" height="174" key="GridCell.Tab.0.center/52.27.1314.741@52.27.1314.741" timestamp="1583622023745" />
-    <state width="1293" height="174" key="GridCell.Tab.0.left" timestamp="1583622023744">
+    <state width="1293" height="174" key="GridCell.Tab.0.bottom/52.27.1314.741@52.27.1314.741" timestamp="1584660496488" />
+    <state width="1293" height="174" key="GridCell.Tab.0.center" timestamp="1584660496487">
       <screen x="52" y="27" width="1314" height="741" />
     </state>
-    <state width="1293" height="174" key="GridCell.Tab.0.left/52.27.1314.741@52.27.1314.741" timestamp="1583622023744" />
-    <state width="1293" height="174" key="GridCell.Tab.0.right" timestamp="1583622023745">
+    <state width="1293" height="174" key="GridCell.Tab.0.center/52.27.1314.741@52.27.1314.741" timestamp="1584660496487" />
+    <state width="1293" height="174" key="GridCell.Tab.0.left" timestamp="1584660496486">
       <screen x="52" y="27" width="1314" height="741" />
     </state>
-    <state width="1293" height="174" key="GridCell.Tab.0.right/52.27.1314.741@52.27.1314.741" timestamp="1583622023745" />
-    <state x="228" y="32" key="SettingsEditor" timestamp="1583615937135">
+    <state width="1293" height="174" key="GridCell.Tab.0.left/52.27.1314.741@52.27.1314.741" timestamp="1584660496486" />
+    <state width="1293" height="174" key="GridCell.Tab.0.right" timestamp="1584660496487">
       <screen x="52" y="27" width="1314" height="741" />
     </state>
-    <state x="228" y="32" key="SettingsEditor/52.27.1314.741@52.27.1314.741" timestamp="1583615937135" />
+    <state width="1293" height="174" key="GridCell.Tab.0.right/52.27.1314.741@52.27.1314.741" timestamp="1584660496487" />
+    <state x="228" y="31" width="962" height="737" key="SettingsEditor" timestamp="1584653679706">
+      <screen x="52" y="27" width="1314" height="741" />
+    </state>
+    <state x="228" y="31" width="962" height="737" key="SettingsEditor/52.27.1314.741@52.27.1314.741" timestamp="1584653679706" />
+    <state x="762" y="282" width="540" height="237" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1584654923215">
+      <screen x="52" y="27" width="1314" height="741" />
+    </state>
+    <state x="762" y="282" width="540" height="237" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/52.27.1314.741@52.27.1314.741" timestamp="1584654923215" />
   </component>
 </project>
