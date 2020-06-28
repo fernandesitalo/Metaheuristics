@@ -14,12 +14,20 @@ def main():
     # M -----------> numero de formigas
     # cvrp --------> instancia do crvp lida
 
-    alpha = 1
-    beta = 1
-    rho = 0.5
-    niter = 100
-    M = 5
+    alpha = 0.4
+    beta = 0.6
+    rho = 0.7
+    niter = 7600
+    M = 10
     cvrp = read(path2)
+
+    # L = [0, 31, 6, 18, 24, 21, 19, 20, 26, 0, 2, 9, 22, 15, 28, 7, 0, 16, 13, 8, 14, 27, 1, 0, 12, 5, 11, 3, 10, 29, 25, 0, 23, 4, 30, 0, 17]
+    #
+    # s = 0
+    # for i in range(1,len(L)):
+    #     s += cvrp.dist(L[i-1],L[i])
+    # print(s)
+
     aco = ACO(alpha, beta, rho, niter, default_pheromone(cvrp.get_n()), M, cvrp)
     ans = aco.execute()
     print(ans.get_fitness())
