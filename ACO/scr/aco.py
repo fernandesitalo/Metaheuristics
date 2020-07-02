@@ -1,10 +1,12 @@
+from collections import Generator
 from copy import deepcopy
+from typing import Tuple
 
 from scr.Ant import Ant
 
 
 def default_pheromone(dimension):
-    return [[1] * dimension] * dimension
+    return [[0.5] * dimension] * dimension
 
 
 class ACO(object):
@@ -23,8 +25,10 @@ class ACO(object):
         n = len(self.__pheromone)  # n clientes + deposito central
         quality = [[1.0 / cost(u, v) if cost(u, v) != 0 else float('inf') for v in range(n)] for u in range(n)]
         Ants = [Ant(self.__cvrp) for _ in range(self.__M)]
+
         for i in range(self.__M):
             Ants[i].build_solution(self.__alpha, self.__beta, self.__pheromone, quality)
+
         Ants.sort(key=lambda x: x.get_fitness())
         best = deepcopy(Ants[0])
 

@@ -43,4 +43,17 @@ def read(filename):
     demand = [int(x[1]) for x in content[d + 1: d + number_of_clients + 2]]
     locations = [(int(x[1]), int(x[2])) for x in content[c + 1: c + number_of_clients + 2]]
 
+    print("====> {} ".format(len(locations)))
+
     return Cvrp(number_of_clients, capacity, demand, locations)
+
+
+def read2(filename):
+    with open(filename) as reader:
+        content = [x.strip().split() for x in reader.readlines()]
+
+    n, c = map(int, content[0])
+    demand = list(map(int, content[1]))
+    locations = list(tuple(map(int, x)) for x in content[2:])
+    # noinspection PyTypeChecker
+    return Cvrp(n - 1, c, demand, locations)
