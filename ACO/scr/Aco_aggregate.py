@@ -66,6 +66,7 @@ class Aco_aggregate(Aco):
                 self.__pheromone[i][j] = (1 - average_rho) * self.__pheromone[i][j] + average_rho * delta[i][j]
 
     def update_parameters(self, population, average_solutions, new_average_solutions):
+        # TODO: melhorar esse update.
         delta = 0.0001
 
         if new_average_solutions > average_solutions:
