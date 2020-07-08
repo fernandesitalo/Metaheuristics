@@ -9,7 +9,7 @@ def default_pheromone(dimension):
     return [[0.5] * dimension] * dimension
 
 
-class ACO(object):
+class Aco(object):
     def __init__(self, alpha, beta, rho, niter, pheromone, M, cvrp):
         self.__alpha = alpha
         self.__beta = beta

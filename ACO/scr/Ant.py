@@ -42,19 +42,15 @@ class Ant(object):
         self.__tour = []
         for i in range(0, len(candidate) - 1):
             assert candidate[0] == 0, "Implementation error: changed candidate 0 to {}".format(candidate[0])
-
             probability = [pheromone[u][v] ** alpha * quality[u][v] ** beta for v in candidate]
             u = candidate[choose_neighbor(x for x in probability)]
-
             if u == 0 or load + self.__cvrp.get_demand(u) > self.__cvrp.get_capacity():
                 probability = [pheromone[0][v] ** alpha * quality[0][v] ** beta for v in candidate[1:]]
                 u = candidate[choose_neighbor(x for x in probability) + 1]
                 load = 0
-
             load += self.__cvrp.get_demand(u)
             candidate.remove(u)
             self.__tour.append(u)
-
         self._evaluate_fitness()
 
     def update_delta(self, delta):
