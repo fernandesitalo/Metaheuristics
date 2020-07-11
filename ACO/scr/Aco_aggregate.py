@@ -1,15 +1,8 @@
-from collections import Generator
 from copy import deepcopy
 from random import random
-from typing import Tuple
 
-from scr.Ant import Ant
 from scr.Ant_aggregate import Ant_aggregate
 from scr.aco import Aco
-
-
-def default_pheromone(dimension):
-    return [[0.5] * dimension] * dimension
 
 
 class Aco_aggregate(Aco):
@@ -22,8 +15,10 @@ class Aco_aggregate(Aco):
     def execute(self):
         cost = self.__cvrp.dist
         n = len(self.__pheromone)  # n clientes + deposito central
-        # heuristica que estou usando.
+
+        # heuristica
         quality = [[1.0 / cost(u, v) if cost(u, v) != 0 else float('inf') for v in range(n)] for u in range(n)]
+
         Ants = [Ant_aggregate(random(), random(), random(), self.__cvrp) for _ in range(self.__M)]
 
         for x in Ants:

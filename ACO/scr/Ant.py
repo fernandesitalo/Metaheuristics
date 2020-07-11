@@ -1,6 +1,5 @@
 from collections import Generator
 from random import random
-from typing import Tuple
 
 from scr.min_queue import MinQueue
 
