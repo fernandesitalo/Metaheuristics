@@ -1,8 +1,8 @@
 from copy import deepcopy
 from random import random
 
-from scr.Ant_aggregate import Ant_aggregate
-from scr.aco import Aco
+from _scr.aco.aco import Aco
+from _scr.controle.Ant_aggregate import Ant_aggregate
 
 
 class Aco_aggregate(Aco):
@@ -13,7 +13,7 @@ class Aco_aggregate(Aco):
         self.__cvrp = cvrp
 
     def execute(self):
-        cost = self.__cvrp.dist
+        cost = self.__cvrp.dist_
         n = len(self.__pheromone)  # n clientes + deposito central
 
         # heuristica

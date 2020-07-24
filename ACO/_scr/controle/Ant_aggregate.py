@@ -1,4 +1,4 @@
-from scr.Ant import Ant
+from _scr.aco.Ant import Ant
 
 
 class Ant_aggregate(Ant):

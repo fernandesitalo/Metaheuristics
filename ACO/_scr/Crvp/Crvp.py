@@ -15,7 +15,7 @@ class Cvrp:
         self.__demand = demand
         self.__locations = locations
 
-    def dist(self, u, v):
+    def dist_(self, u, v):
         diff = lambda i: self.__locations[u][i] - self.__locations[v][i]
         a = diff(0)
         b = diff(1)
@@ -29,6 +29,10 @@ class Cvrp:
 
     def get_capacity(self):
         return self.__capacity
+
+
+    def get_all_demands(self):
+        return self.__demand
 
 
 def read(filename):
