@@ -47,7 +47,7 @@ def read(filename):
     demand = [int(x[1]) for x in content[d + 1: d + number_of_clients + 2]]
     locations = [(int(x[1]), int(x[2])) for x in content[c + 1: c + number_of_clients + 2]]
 
-    print("====> {} ".format(len(locations)))
+    # print("====> {} ".format(len(locations)))
 
     return Cvrp(number_of_clients, capacity, demand, locations)
 

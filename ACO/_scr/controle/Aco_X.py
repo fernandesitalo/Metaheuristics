@@ -23,6 +23,7 @@ class Aco_X:
         self.R = (1, self.L - 1)
 
     def execute(self):
+        ans = []
         cost = self.__cvrp.dist_
         n = len(self.__pheromone)  # n clientes + deposito central
         quality = [[1.0 / cost(u, v) if cost(u, v) != 0 else float('inf') for v in range(n)] for u in range(n)]
@@ -38,10 +39,9 @@ class Aco_X:
         self.best = deepcopy(Ants[0])
         self.__stopping_condition.start()
         while not self.__stopping_condition:
-            print(self.__stopping_condition.counter)
             last_average = current_average
             current_average = 0
-
+            ans.append([self._alpha_, self._beta_, self._rho_, self.best.get_fitness()])
             for ant in Ants:
                 ant.build_solution(self._alpha_, self._beta_, self.__pheromone, quality)
                 ant.local_search()
@@ -60,8 +60,8 @@ class Aco_X:
                 self.__stopping_condition.update(True)
             else:
                 self.__stopping_condition.update(False)
-
-        return self.best
+        ans.append([self._alpha_, self._beta_, self._rho_, self.best.get_fitness()])
+        return self.best.get_fitness(), ans
 
     def update_parameters(self):
         M = 1
@@ -81,7 +81,7 @@ class Aco_X:
                     beta = b / self.L + frac * random()
                     rho = r / self.L + frac * random()
 
-                    partial = Aco(alfa, beta, rho, MaxIterations(1), phe, M, self.__cvrp).execute()
+                    partial = Aco(alfa, beta, rho, MaxIterations(10), phe, M, self.__cvrp).execute()
                     v.append((partial.get_fitness(), [a, b, r]))
                     if partial.get_fitness() < best_fitness:
                         best_fitness = partial.get_fitness()
